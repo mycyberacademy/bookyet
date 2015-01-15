@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html ng-app="bookyet" ng-controller="AppController as app">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+
+    <title ng-bind="pageTitle">iBuk.io</title>
+
+    <!-- font awesome from BootstrapCDN -->
+    <!-- <link href="http://netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css" rel="stylesheet"> -->
+
+    <!-- compiled CSS -->
+    <link rel="stylesheet" type="text/css" href="vendor/semantic/dist/semantic.css" />
+    <link rel="stylesheet" type="text/css" href="assets/bookyet-0.0.1.css" />
+   
+</head>
+<body>
+    
+    <div class="ui header segment logo">
+        <div class="container">                     
+            <a ui-sref="home" class="logo">
+                <i class="icon book size-72"></i>iBuk.io
+                <span ng-if="app.hasUser" ng-bind="currentUser.display_name">
+                    
+                </span>
+            </a>
+
+            <a ui-sref="auth" ng-if="!app.hasUser">
+                Login
+            </a>
+            
+            <a ui-sref="user" ng-if="app.hasUser" ng-cloak>
+                User info
+            </a>
+            
+            <a href="#" ng-if="app.hasUser" ng-click="logout()" ng-cloak>
+                Logout
+            </a>
+
+
+            <div class="ui right floated menu" ng-show="app.selectedSchool">
+                <div class="item">                                        
+
+                    <div class="field">
+                        <label for="selectedOption">Model</label>
+                        <select name="selectedOption" id="selectedOption" ng-model="app.selling" ng-value="app.selling">
+                            <option value="" selected>Buying</option>
+                            <option value="true">Selling</option>
+                        </select>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="pendiente" ui-view="main"></div>
+
+
+    <div class="ui three column equal height divided center aligned stackable very relaxed page grid">
+        <div class="row">
+            <div class="center aligned sixteen wide column">
+                <h1 class="ui center aligned header">It's just a matter of <span class="ui teal header">one</span> - <sapn class="ui {{app.red}} header">two</sapn> - <span class="ui {{app.purple}} header">three</span> steps</h1>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="column">
+                <h2 class="ui icon teal header">
+                    <i class="options icon"></i>
+                    Choose an option
+                </h2>
+                <p class="ui justified">
+                    If you are here, you probably want to either <strong>sell</strong> some old books, or <strong>buy</strong> new ones for your upcomming courses. Select one of the two options above and...
+                </p>
+            </div>
+            <div class="column">
+                <h2 class="ui icon {{app.red}} header">
+                    <i class="university icon"></i>
+                    Choose your college
+                </h2>
+                <p class="ui justified">
+                    You will probably want to check what other students of your own school has to offer. If they already finished a course you are going to take, they have, for sure, the books you need.  
+                </p>
+            </div>
+            <div class="column">
+                <h2 class="ui icon {{app.purple}} header">
+                    <i class="search icon"></i>
+                    Search
+                </h2>
+                <p class="ui justified">
+                    We have a large database of books at your disposal. 
+                    If you are either selling or buying a book, just find it by typing it's <strong>BIN#</strong>, <strong>Title</strong> or <strong>Author</strong>, select it, and enjoy.
+                </p>
+            </div>      
+            
+        </div>
+
+    </div>
+
+    <footer class="ui purple footer center aligned segment">
+        <div class="containert">
+            <div class="ui stackable very relaxed two column padded grid">
+                <div class="eight wide column">
+                    <h5 class="ui header">
+                        Your Feedback is important
+                    </h5>
+                    <p>
+                        If you encounter any problems with the app, have some advice to make it more accessible, or just want to say Hi, don't hesitate to <a href="mailto:cybertouchsolutions@gmail.com">Contact US</a>
+                    </p>
+                </div>
+
+                <div class="eight wide column">
+                    <h5 class="ui header">
+                        Help Make iBuk a better app
+                    </h5>
+                    <p>
+                        Maintaining a large database with large data about books and colleges of USA and Canada is no small task. Support for the continued improvement of this app and <a href="mailto:cybertouchsolutions@gmail.com">help us be better for you</a>.
+                    </p>
+                </div>
+
+            </div>
+            
+            <h5>
+                Copyright (c) 2015 | <a href="http://www.cybertouchsolutions.com" target="_blank">CyberTouch Solutions</a>
+            </h5>
+        </div> 
+    </footer>
+
+    <!-- <footer class="container">
+        (c) 2015 CyberTouch Solutions
+    </footer> -->
+
+     <!-- compiled JavaScript -->
+    <script type="text/javascript" src="vendor/jquery/dist/jquery.js"></script>
+    <script type="text/javascript" src="vendor/angular/angular.js"></script>
+    <script type="text/javascript" src="vendor/angular-resource/angular-resource.js"></script>
+    <script type="text/javascript" src="vendor/angular-ui-router/release/angular-ui-router.js"></script>
+    <script type="text/javascript" src="vendor/satellizer/satellizer.js"></script>
+    <script type="text/javascript" src="vendor/angular-dreamfactory/angular-dreamfactory.js"></script>
+    <script type="text/javascript" src="vendor/angular-local-storage/angular-local-storage.js"></script>
+    <script type="text/javascript" src="vendor/semantic/dist/semantic.js"></script>
+    <script type="text/javascript" src="src/app/app.js"></script>
+    <script type="text/javascript" src="src/app/auth/auth.js"></script>
+    <script type="text/javascript" src="src/app/auth/login/login.js"></script>
+    <script type="text/javascript" src="src/app/auth/logout/logout.js"></script>
+    <script type="text/javascript" src="src/app/auth/register/register.js"></script>
+    <script type="text/javascript" src="src/app/auth/services/auth.userService.js"></script>
+    <script type="text/javascript" src="src/app/book/book.js"></script>
+    <script type="text/javascript" src="src/app/book/directives/add.directive.js"></script>
+    <script type="text/javascript" src="src/app/book/directives/book.directive.js"></script>
+    <script type="text/javascript" src="src/app/book/services/ad.factory.js"></script>
+    <script type="text/javascript" src="src/app/book/services/book.factory.js"></script>
+    <script type="text/javascript" src="src/app/home/home.js"></script>
+    <script type="text/javascript" src="src/app/school/directives/school.directive.js"></script>
+    <script type="text/javascript" src="src/app/school/school.js"></script>
+    <script type="text/javascript" src="src/app/school/services/school.factory.js"></script>
+    <script type="text/javascript" src="src/app/user/user.js"></script>
+    <script type="text/javascript" src="templates-common.js"></script>
+    <script type="text/javascript" src="templates-app.js"></script>
+</body>
+</html>
